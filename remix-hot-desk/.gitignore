@@ -1,5 +1,8 @@
 # See http://help.github.com/ignore-files/ for more about ignoring files.
 
+.nycrc
+CHANGELOG.md
+
 build
 dist
 node_modules
