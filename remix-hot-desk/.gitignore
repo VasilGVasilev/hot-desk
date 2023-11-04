@@ -26,7 +26,7 @@ stats.json
 
 # dependencies
 /node_modules
-/has-symbols
+
 
 # IDEs and editors
 /.idea
