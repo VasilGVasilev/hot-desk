@@ -31,7 +31,7 @@ export const loader = async () => {
 
 export default function App() {
 
-  const { contacts }: any = useLoaderData();
+  const { contacts } = useLoaderData<typeof loader>();
 
   return (
     <html lang="en">
@@ -62,7 +62,7 @@ export default function App() {
           <nav>
             {contacts.length ? (
               <ul>
-                {contacts.map((contact: any) => (
+                {contacts.map((contact) => (
                   <li key={contact.id}>
                     <Link to={`contacts/${contact.id}`}>
                       {contact.first || contact.last ? (
