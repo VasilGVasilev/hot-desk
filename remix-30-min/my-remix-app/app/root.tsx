@@ -1,8 +1,6 @@
 // Input Outlet manually so that nested routes can be accessible
 
-import { json, type LinksFunction } from "@remix-run/node";
 
-import appStylesHref from './app.css'
 
 import {
   Form,
@@ -15,19 +13,28 @@ import {
   ScrollRestoration,
   useLoaderData,
 } from "@remix-run/react";
-import { getContacts } from "./data";
+
+import appStylesHref from './app.css'
+
+import { json, type LinksFunction } from "@remix-run/node";
+import { createEmptyContact, getContacts } from "./data";
 
 export const links: LinksFunction = () => [
   { rel: "stylesheet", href: appStylesHref }
 ]
 
-// SSR
+// SSR > resolved in useLoaderData
 export const loader = async () => {
   const contacts = await getContacts();
   return json({ contacts });
 };
 
 
+// for New Form
+export const action = async () => {
+  const contact = await createEmptyContact();
+  return json({ contact });
+}; 
 
 export default function App() {
 
