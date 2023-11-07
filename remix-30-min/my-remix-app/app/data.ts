@@ -314,3 +314,5 @@ export async function deleteContact(id: string) {
     id: `${contact.first.toLowerCase()}-${contact.last.toLocaleLowerCase()}`,
   });
 });
+
+// smart approach to making Id of DB: for loop and add id made by concating two properties, so if you expand array, it automatically adds id.
