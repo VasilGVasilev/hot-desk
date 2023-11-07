@@ -1,0 +1,1 @@
+Outlet in root.tsx enables any nested routes to be accesible
