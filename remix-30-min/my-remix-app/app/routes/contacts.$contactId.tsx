@@ -59,12 +59,14 @@ export default function Contact() {
         {contact.notes ? <p>{contact.notes}</p> : null}
 
         <div>
-          <Form action="edit">
+          <Form
+            action="edit" //relative action that sends the form to .../edit
+          >
             <button type="submit">Edit</button>
           </Form>
 
           <Form
-            action="destroy"
+            action="destroy" //relative action that sends the form to .../destroy
             method="post"
             onSubmit={(event) => {
               const response = confirm(

@@ -1,1 +1,1 @@
-Outlet in root.tsx enables any nested routes to be accesible
+Outlet in root.tsx enables any nested routes to be accesible. If there are children, Outlet enables them to be rendered, if not - have an _index.tsx file as a default.
