@@ -50,6 +50,12 @@ const fakeContacts = {
     const contact = await fakeContacts.get(id);
     invariant(contact, `No contact found for ${id}`);
     const updatedContact = { ...contact, ...values };
+    // The updatedContact object will contain the properties of both contact and values. 
+    // However, since both objects have properties with the same keys (a and b), 
+    // the values from the values object will overwrite the values from the contact object
+    // ex. like updating setState
+    // const oldObject = { name: 'Stratford' };
+    // const newObject = { ...oldObject, name: 'HB Woodlawn' };
     fakeContacts.records[id] = updatedContact;
     return updatedContact;
   },

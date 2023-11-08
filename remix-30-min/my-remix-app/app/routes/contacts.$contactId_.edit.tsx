@@ -16,7 +16,7 @@ export const action = async ({
     request,
 }: ActionFunctionArgs) => {
     invariant(params.contactId, "Missing contactId param");
-    const formData = await request.formData(); //this triggers execution on the browser
+    const formData = await request.formData(); //this triggers execution of browser specific formData
     const updates = Object.fromEntries(formData);
     await updateContact(params.contactId, updates);
     return redirect(`/contacts/${params.contactId}`);
