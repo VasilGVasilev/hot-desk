@@ -1,0 +1,1 @@
+Wraps <Link> with additional props for styling active and pending states. Please note that this API is marked unstable and may be subject to breaking changes without a major release. 
