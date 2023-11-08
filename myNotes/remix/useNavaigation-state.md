@@ -1,0 +1,1 @@
+In Remix, the useNavigation hook provides information about a pending page navigation, which can be used to manage CSS during navigation.

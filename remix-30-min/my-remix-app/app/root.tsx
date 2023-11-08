@@ -12,6 +12,7 @@ import {
   Scripts,
   ScrollRestoration,
   useLoaderData,
+  useNavigation,
 } from "@remix-run/react";
 
 import appStylesHref from './app.css'
@@ -37,6 +38,8 @@ export const action = async () => {
 };
 
 export default function App() {
+
+  const navigation = useNavigation();
 
   const { contacts } = useLoaderData<typeof loader>();
 
@@ -76,9 +79,9 @@ export default function App() {
                         isActive
                           ? "active"
                           : isPending
-                          ? "pending"
-                          : ""
-                    }
+                            ? "pending"
+                            : ""
+                      }
                       to={`contacts/${contact.id}`}
                     >
                       {contact.first || contact.last ? (
@@ -102,7 +105,12 @@ export default function App() {
             )}
           </nav>
         </div>
-        <div id="detail">
+        <div
+          className={
+            navigation.state === "loading" ? "loading" : ""
+          }
+          id="detail"
+        >
           <Outlet />
         </div>
         <ScrollRestoration />
