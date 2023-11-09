@@ -9,7 +9,7 @@ npm i --save-dev prisma
 2. init prisma
 
 ```sh
-npx prisma init --datasource-provider mysql
+npx prisma init --datasource-provider postgresql
 ```
 
 - creates prisma dir (with schema.prisma) and end with DATABASE_URL
@@ -22,7 +22,7 @@ generator client {
 }
 
 datasource db {
-    provider = "mysql"
+    provider = "postgresql"
     url      = env("DATABASE_URL")
 }
 ```
@@ -39,7 +39,7 @@ generator client {
 }
 
 datasource db {
-    provider = "mysql"
+    provider = "postgresql"
     url      = env("DATABASE_URL")
 }
 
@@ -53,6 +53,11 @@ model User {
 
 ```sh
 npx prisma migrate dev --name init
+
+# OR for MongoDB
+
+npx prisma db push
+
 ```
 
 Creates a brand new migration and triggers npx prisma generate which, in turn, creates the Prisma Client 
@@ -90,3 +95,5 @@ npm i @prisma/client
 ```sh
 prisma.user.create({ data: {name: "Kyle"}})
 ```
+
+
