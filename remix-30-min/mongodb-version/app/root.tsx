@@ -18,7 +18,8 @@ import {
 import appStylesHref from './app.css'
 
 import { json, redirect, type LinksFunction } from "@remix-run/node";
-import { createEmptyContact, getContacts } from "./data";
+import { createEmptyContact } from "./data";
+import getContacts from "./actions/getContacts";
 
 export const links: LinksFunction = () => [
   { rel: "stylesheet", href: appStylesHref }
@@ -91,9 +92,7 @@ export default function App() {
                       ) : (
                         <i>No Name</i>
                       )}{" "}
-                      {contact.favorite ? (
-                        <span>★</span>
-                      ) : null}
+                      
                     </NavLink>
                   </li>
                 ))}

@@ -1,24 +1,20 @@
 import prisma from 'app/libs/prismadb';
 
-interface IParams {
-    contactId?: string;
-}
-
-export default async function getContacts(
-    params: IParams
+export default async function getContactById(
+    params: string
 ) {
     try {
-        const {
+        const
             contactId
-        } = params;
+                = params;
 
 
-        const contacts = await prisma.contact.findMany({
+        const contacts = await prisma.contact.findUnique({
             where: {
                 id: contactId
-            }, 
+            },
         });
-        
+
 
         return contacts;
 

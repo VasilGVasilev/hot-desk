@@ -1,19 +1,20 @@
 // In the Remix route file convention, . will create a / in the URL and $ makes a segment dynamic. 
 
-import type { FunctionComponent } from "react";
+// import type { FunctionComponent } from "react";
 
-import type { ContactRecord } from "../data";
+// import type { ContactRecord } from "../data";
 
 import { json } from "@remix-run/node";
 import type { LoaderFunctionArgs } from "@remix-run/node";
 import { Form, useLoaderData } from "@remix-run/react";
 
-import { getContact } from "../data";
 import invariant from "tiny-invariant";
+import getContactById from "~/actions/getContactById";
 
 export const loader = async ({ params }: LoaderFunctionArgs) => {
+  console.log(params)
   invariant(params.contactId, "Missing contactId param");
-  const contact = await getContact(params.contactId);
+  const contact = await getContactById(params.contactId)
   if (!contact) {
     throw new Response("Not Found", { status: 404 });
   } //without this ts warns me in the tsx below the return() that contact could be 'null'
@@ -43,7 +44,7 @@ export default function Contact() {
           ) : (
             <i>No Name</i>
           )}{" "}
-          <Favorite contact={contact} />
+          {/* <Favorite contact={contact} /> */}
         </h1>
 
         {contact.twitter ? (
@@ -56,7 +57,7 @@ export default function Contact() {
           </p>
         ) : null}
 
-        {contact.notes ? <p>{contact.notes}</p> : null}
+        {/* {contact.notes ? <p>{contact.notes}</p> : null} */}
 
         <div>
           <Form
@@ -85,24 +86,24 @@ export default function Contact() {
   );
 }
 
-const Favorite: FunctionComponent<{
-  contact: Pick<ContactRecord, "favorite">;
-}> = ({ contact }) => {
-  const favorite = contact.favorite;
+// const Favorite: FunctionComponent<{
+//   contact: Pick<ContactRecord, "favorite">;
+// }> = ({ contact }) => {
+//   const favorite = contact.favorite;
 
-  return (
-    <Form method="post">
-      <button
-        aria-label={
-          favorite
-            ? "Remove from favorites"
-            : "Add to favorites"
-        }
-        name="favorite"
-        value={favorite ? "false" : "true"}
-      >
-        {favorite ? "★" : "☆"}
-      </button>
-    </Form>
-  );
-};
+//   return (
+//     <Form method="post">
+//       <button
+//         aria-label={
+//           favorite
+//             ? "Remove from favorites"
+//             : "Add to favorites"
+//         }
+//         name="favorite"
+//         value={favorite ? "false" : "true"}
+//       >
+//         {favorite ? "★" : "☆"}
+//       </button>
+//     </Form>
+//   );
+// };

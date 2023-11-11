@@ -8,8 +8,9 @@ import type {
 } from "@remix-run/node";
 import { json, redirect } from "@remix-run/node";
 import invariant from "tiny-invariant";
-import { getContact, updateContact } from "../data";
 import { Form, useLoaderData, useNavigate } from "@remix-run/react";
+import updateContactById from "~/actions/updateContactById";
+import getContactById from "~/actions/getContactById";
 
 export const action = async ({
     params,
@@ -18,7 +19,7 @@ export const action = async ({
     invariant(params.contactId, "Missing contactId param");
     const formData = await request.formData(); //this triggers execution of browser specific formData
     const updates = Object.fromEntries(formData);
-    await updateContact(params.contactId, updates);
+    await updateContactById(params.contactId, updates);
     return redirect(`/contacts/${params.contactId}`);
 };
 
@@ -28,7 +29,7 @@ export const loader = async ({
     params,
 }: LoaderFunctionArgs) => {
     invariant(params.contactId, "Missing contactId param");
-    const contact = await getContact(params.contactId);
+    const contact = await getContactById(params.contactId);
     if (!contact) {
         throw new Response("Not Found", { status: 404 });
     }
@@ -61,7 +62,7 @@ export default function EditContact() {
             <label>
                 <span>Twitter</span>
                 <input
-                    defaultValue={contact.twitter}
+                    defaultValue={contact.twitter!}
                     name="twitter"
                     placeholder="@jack"
                     type="text"
@@ -77,14 +78,14 @@ export default function EditContact() {
                     type="text"
                 />
             </label>
-            <label>
+            {/* <label>
                 <span>Notes</span>
                 <textarea
                     defaultValue={contact.notes}
                     name="notes"
                     rows={6}
                 />
-            </label>
+            </label> */}
             <p>
                 <button type="submit">Save</button>
                 <button onClick={()=> navigate(-1)} type="button">Cancel</button>
