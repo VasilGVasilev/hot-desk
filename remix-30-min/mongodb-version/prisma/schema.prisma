@@ -11,9 +11,9 @@ datasource db {
 }
 
 model Contact {
-  id      String @id @default(auto()) @map("_id") @db.ObjectId
+  id      String  @id @default(auto()) @map("_id") @db.ObjectId
   avatar  String
   first   String
   last    String
-  twitter String
+  twitter String?
 }
