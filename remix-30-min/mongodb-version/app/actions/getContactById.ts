@@ -9,14 +9,14 @@ export default async function getContactById(
                 = params;
 
 
-        const contacts = await prisma.contact.findUnique({
+        const contact = await prisma.contact.findUnique({
             where: {
                 id: contactId
             },
         });
 
 
-        return contacts;
+        return contact;
 
     } catch (error: any) {
         throw new Error(error)

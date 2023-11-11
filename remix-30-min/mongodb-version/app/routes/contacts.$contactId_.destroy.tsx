@@ -3,13 +3,13 @@ import type {
 } from "@remix-run/node";
 import { redirect } from "@remix-run/node";
 import invariant from "tiny-invariant";
-import { deleteContact } from "../data";
+import deleteContactById from "~/actions/deleteContactById";
 
 export const action = async ({
     params,
 }: ActionFunctionArgs) => {
     invariant(params.contactId, "Missing contactId param");
-    await deleteContact(params.contactId);
+    await deleteContactById(params.contactId);
     return redirect(`/`);
 };
 
